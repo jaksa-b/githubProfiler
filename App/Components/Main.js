@@ -96,6 +96,9 @@ class Main extends React.Component{
         });
     }
     render(){
+        var showError = (
+            this.state.error ? <Text> {this.state.error} </Text> : <Text></Text>
+        );
         return (
            <View style={style.mainContainer}>
                <Text style={style.title}>Search Github User</Text>
@@ -109,6 +112,11 @@ class Main extends React.Component{
                    underlayColor="white">
                    <Text style={style.buttonTest}>SEARCH</Text>
                </TouchableHighlight>
+               <ActivityIndicatorIOS
+                   animating={this.state.isLoading}
+                   color="#111"
+                   size="large"></ActivityIndicatorIOS>
+               {showError}
            </View>
         )
     }
