@@ -1,7 +1,7 @@
 var React = require('react-native');
 var Badge = require('./Badge');
 var Separator = require('./Helpers/Separator');
-
+var WebView = require('./Helpers/WebView');
 var {
     Text,
     View,
@@ -37,12 +37,16 @@ var style = StyleSheet.create({
 
 class Repositories extends React.Component{
     openPage(url){
-        console.log('repo url', url);
+        this.props.navigator.push({
+            title: 'Web View',
+            component: WebView,
+            passProps: {url}
+        });
     }
     render(){
         var repos = this.props.repos;
         var list = repos.map((item, index) => {
-            var desc = repos[index].description ? <Text style={style.description}>{repos[index]}</Text> : <View />;
+            var desc = repos[index].description ? <Text style={style.description}>{repos[index].description}</Text> : <View />;
             return(
                 <View key={index}>
                     <View style={style.rowContainer}>
